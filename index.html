@@ -1339,7 +1339,7 @@ html {
                     <label for="plano">Plano Escolhido <span class="form-required">*</span></label>
                     <select id="plano" name="plano" required>
                         <option value="">Selecione seu plano</option>
-                        <option value="Bronze - R$ 49,90/mês">Plano Bronze - R$ 64,90/mês</option>
+                        <option value="Bronze - R$ 49,90/mês">Plano Bronze - R$ 49,90/mês</option>
                         <option value="Prata - R$ 97/mês">plano Prata - R$ 97/mês</option>
                         <option value="Elite - R$ 197/mês">Elite Longevidade - R$ 249,90/mês</option>
                     </select>
@@ -1493,26 +1493,29 @@ html {
         submitButton.disabled = true;
         submitButton.innerHTML = 'ENVIANDO...';
 
-        fetch('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                data: [
-                    {
-                        'nome': form.elements['nome'].value,
-                        'email': form.elements['email'].value,
-                        'telefone': form.elements['telefone'].value,
-                        'plano': form.elements['plano'].value,
-                        'idade': form.elements['idade'].value,
-                        'objetivo': form.elements['objetivo'].value
-                    }
-                ]
-            })
-        })
 
+        
+     // --- INÍCIO DO CÓDIGO DE TESTE ---
+fetch('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        data: [
+            {
+                'nome': 'Teste',
+                'email': 'teste@email.com',
+                'telefone': '123456',
+                'plano': 'Plano Teste',
+                'idade': '99',
+                'objetivo': 'Testar'
+            }
+        ]
+    } )
+})
+// --- FIM DO CÓDIGO DE TESTE ---
 
 
 .then((response) => {
