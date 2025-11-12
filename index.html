@@ -1090,7 +1090,7 @@ html {
         <div class="container hero-content">
             <h1>Recupere Seu <span class="highlight">Metabolismo</span> e Transforme Seu Corpo Após os 40</h1>
             <h2>Treinos Online Personalizados para Resultados Rápidos e Duradouros.</h2>
-            <p>Descubra o Treino Personalizado que Respeita seu Ritmo e Maximiza Queima de Gordura e Força. — tudo no conforto da sua casa.</p>
+            <p>Descubra o Treino Personalizado que Respeita seu Ritmo e Maximiza Queima de Gordura e Força. Tudo no conforto da sua casa.</p>
             <a href="#planos" class="cta-button cta-primary">Quero Começar Agora</a>
             
             <div class="hero-stats">
@@ -1177,8 +1177,8 @@ html {
                             <line x1="12" y1="17" x2="12.01" y2="17"></line>
                         </svg>
                     </div>
-                    <h3>Método Científico</h3>
-                    <p>Baseado em estudos sobre metabolismo feminino 40+. Não é achismo, é ciência aplicada.</p>
+                    <h3>Método LA</h3>
+                    <p>Desenvolvido especificamente para os desafios do metabolismo e das mudanças hormonais. Treino certo para a idade certa.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
@@ -1232,8 +1232,8 @@ html {
     <h3>Plano Bronze</h3>
     <p class="subtitle">O Ponto de Partida Ideal</p>
     <div class="price-container">
-        <div class="price-old">R$ 79,90</div>
-        <div class="price">R$ 64<span class="price-period">,90</span></div>
+        <div class="price-old">R$ 64,90</div>
+        <div class="price">R$ 49,90<span class="price-period">,90</span></div>
     </div>
     <ul class="pricing-features">
         <li>Acesso a 3 fichas de Treinos Personalizados</li>
@@ -1241,6 +1241,7 @@ html {
         <li>Grupo de WhatsApp Para Dúvidas Frequentes (30 Dias)</li>
         <li>Avaliação Inicial de Nível e Objetivos</li>
         <li>Acesso à plataforma (30 Dias)</li>
+        <li>Direito a 3 trocas de exercícios nas fichas(30 Dias)</li>
     </ul>
 
   <div class="cta-container-bottom">
@@ -1256,7 +1257,7 @@ html {
                 <div class="pricing-card">
                     <h3>Plano Prata</h3>
                     <p class="subtitle">Resultados Mais Rápidos</p>
-                    <div class="price">R$ 149<span class="price-period">,90</span></div>
+                    <div class="price">R$ 97<span class="price-period">,90</span></div>
                     <ul class="pricing-features">
                         <li>Acesso a 5 fichas de Treinos Personalizados</li>
                         <li>Vídeos EXPLICATIVO de Cada Exercício das Fichas</li>
@@ -1264,7 +1265,7 @@ html {
                         <li>Avaliação Inicial de Nível e Objetivos</li>
                         <li>Acesso VITALÍCIO a Plataforma de Treinos</li>
                         <li>Guia de Nutiçao em PDF</li>
-                        <li>Direito a uma troca/atualizaçao em 1 das fichas</li>
+                        <li>Direito a 5 trocas de exercícios nas fichas(30 Dias)</li>
                     </ul>
 
                     <div class="cta-container-bottom">
@@ -1277,7 +1278,7 @@ html {
                 <div class="pricing-card disabled">
                     <h3>Elite Longevidade</h3>
                     <p class="subtitle">Plano Ouro</p>
-                    <div class="price">R$ 249<span class="price-period">,90</span></div>
+                    <div class="price">R$ 197<span class="price-period">,90</span></div>
                     <ul class="pricing-features">
                         <li>Treinos 100% Individualizados (Ajustes Diários)</li>
                         <li>Acompanhamento Direto e Diário com Personal Trainer</li>
@@ -1338,9 +1339,9 @@ html {
                     <label for="plano">Plano Escolhido <span class="form-required">*</span></label>
                     <select id="plano" name="plano" required>
                         <option value="">Selecione seu plano</option>
-                        <option value="Bronze - R$ 64,90/mês">Plano Bronze - R$ 64,90/mês</option>
-                        <option value="Prata - R$ 497/mês">Caminho Otimizado - R$ 497/mês</option>
-                        <option value="Elite - R$ 249,90/mês">Elite Longevidade - R$ 249,90/mês</option>
+                        <option value="Bronze - R$ 49,90/mês">Plano Bronze - R$ 64,90/mês</option>
+                        <option value="Prata - R$ 97/mês">plano Prata - R$ 97/mês</option>
+                        <option value="Elite - R$ 197/mês">Elite Longevidade - R$ 249,90/mês</option>
                     </select>
                 </div>
 
@@ -1511,25 +1512,51 @@ html {
                 ]
             })
         })
-        .then((response) => {
-            if (response.ok) {
-                // SUCESSO!
-                alert('Inscrição realizada com sucesso! Você será redirecionada para a página de pagamento.');
-                
-                // Redireciona para a página de pagamento
-                // window.location.href = 'https://SEU-LINK-DE-PAGAMENTO.COM';
-                
-                // Limpa o formulário e restaura o botão
-                form.reset( );
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            } else {
-                // ERRO!
-                alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        })
+
+
+
+.then((response) => {
+    if (response.ok) {
+        // SUCESSO!
+        alert('Inscrição realizada com sucesso! Você será redirecionado para a página de pagamento.');
+
+        // --- INÍCIO DA NOVA LÓGICA DE REDIRECIONAMENTO ---
+
+        // 1. Crie um mapa com seus links de pagamento
+        const linksDePagamento = {
+            "Plano Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN",
+            "Plano Prata - R$ 97/mês": "https://mpago.la/2Ew2DGC"
+            // Adicione mais planos aqui se precisar no futuro
+        };
+
+        // 2. Pegue o valor do plano que o usuário selecionou no formulário
+        const planoSelecionado = form.elements['plano'].value;
+
+        // 3. Encontre o link correspondente no mapa
+        const linkParaRedirecionar = linksDePagamento[planoSelecionado];
+
+        // 4. Verifique se o link foi encontrado e redirecione o usuário
+        if (linkParaRedirecionar) {
+            window.location.href = linkParaRedirecionar;
+        } else {
+            // Se, por algum motivo, o plano não tiver um link correspondente, avise o usuário.
+            alert('Obrigado pela inscrição! Em breve entraremos em contato com o link para pagamento.');
+            // E limpe o formulário mesmo assim
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        }
+        
+        // --- FIM DA NOVA LÓGICA ---
+
+    } else {
+        // ERRO!
+        alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    }
+})
+
         .catch((error) => {
             // ERRO DE CONEXÃO!
             console.error('Erro:', error);
