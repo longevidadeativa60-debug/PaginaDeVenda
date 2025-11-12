@@ -1456,121 +1456,98 @@ html {
 
 
 
-<!-- Adiciona a biblioteca axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Adiciona a biblioteca axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<!-- Sua tag script existente vem DEPOIS -->
-<script>
-    // seu código de FAQ, máscara de telefone, e formulário...
-</script>
-
-
-
-
-
-
-
-<script>
-    // FAQ Toggle (seu código original, mantido )
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const faqItem = question.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
+    <!-- SEU SCRIPT COMPLETO E CORRIGIDO -->
+    <script>
+        // Código do FAQ e Máscara de Telefone (mantidos )
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+                if (!isActive) faqItem.classList.add('active');
             });
-            if (!isActive) {
-                faqItem.classList.add('active');
+        });
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
             }
+            e.target.value = value;
         });
-    });
 
-    // Máscara para telefone (seu código original, mantido)
-    document.getElementById('telefone').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length <= 11) {
-            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-        }
-        e.target.value = value;
-    });
+        // --- CÓDIGO DO FORMULÁRIO COM DIAGNÓSTICO ---
+        const form = document.getElementById('checkoutForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            const submitButton = form.querySelector('.submit-button');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'ENVIANDO...';
 
+            // 1. Preparar os dados do formulário
+            const formData = {
+                'nome': form.elements['nome'].value,
+                'email': form.elements['email'].value,
+                'telefone': form.elements['telefone'].value,
+                'plano': form.elements['plano'].value,
+                'idade': form.elements['idade'].value,
+                'objetivo': form.elements['objetivo'].value
+            };
 
+            // 2. Enviar para o SheetDB
+            axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
+                data: formData // Estrutura simplificada para evitar erros
+            } )
+            .then(response => {
+                // 3. VERIFICAÇÃO DE SUCESSO REAL
+                // O SheetDB retorna { "created": 1 } em caso de sucesso. Vamos checar isso.
+                if (response.data && response.data.created === 1) {
+                    // SUCESSO REAL!
+                    alert('Inscrição realizada com sucesso! Você será redirecionado para o pagamento.');
 
-// NOVO CÓDIGO COM AXIOS
-const form = document.getElementById('checkoutForm');
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
+                    // Lógica de redirecionamento
+                    const linksDePagamento = {
+                        "Bronze - R$ 64,90/mês": "https://mpago.la/2VVyZkN", // SEU LINK CURTO AQUI
+                        "Caminho Otimizado - R$ 497/mês": "COLE_O_LINK_CURTO_DO_PLANO_PRATA_AQUI"
+                    };
+                    const planoSelecionado = formData.plano;
+                    const linkParaRedirecionar = linksDePagamento[planoSelecionado];
 
-    const submitButton = form.querySelector('.submit-button');
-    const originalButtonText = submitButton.innerHTML;
-    submitButton.disabled = true;
-    submitButton.innerHTML = 'ENVIANDO...';
-
-    // Usando AXIOS em vez de FETCH
-    axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
-        data: {
-            'nome': form.elements['nome'].value,
-            'email': form.elements['email'].value,
-            'telefone': form.elements['telefone'].value,
-            'plano': form.elements['plano'].value,
-            'idade': form.elements['idade'].value,
-            'objetivo': form.elements['objetivo'].value
-        }
-    } )
-    .then(response => {
-        // SUCESSO!
-        console.log(response); // Para depuração
-        alert('Inscrição realizada com sucesso! Você será redirecionado para a página de pagamento.');
-
-        // Lógica de redirecionamento (mantida)
-        const linksDePagamento = {
-            "Bronze - R$ 49,90/mês": " https://mpago.la/2VVyZkN",
-            "Caminho Otimizado - R$ 97/mês": "https://mpago.la/2Ew2DGC"
-        };
-        const planoSelecionado = form.elements['plano'].value;
-        const linkParaRedirecionar = linksDePagamento[planoSelecionado];
-
-        if (linkParaRedirecionar && linkParaRedirecionar !== "SEU_LINK_BRONZE") { // Adicionei uma verificação extra
-            window.location.href = linkParaRedirecionar;
-        } else {
-            alert('Obrigado pela inscrição! Em breve entraremos em contato.');
-            form.reset();
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonText;
-        }
-    })
-    .catch(error => {
-        // ERRO!
-        console.error(error); // Isso nos dará mais detalhes do erro no console do navegador
-        alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-    });
-});
-
-
-
-
-
-    } else {
-        // ERRO!
-        alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-    }
-})
-
-        .catch((error) => {
-            // ERRO DE CONEXÃO!
-            console.error('Erro:', error);
-            alert('Ocorreu um erro de conexão. Verifique sua internet e tente novamente.');
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonText;
+                    if (linkParaRedirecionar && linkParaRedirecionar.startsWith("http" )) {
+                        window.location.href = linkParaRedirecionar;
+                    } else {
+                        alert('Obrigado pela inscrição! Em breve entraremos em contato.');
+                        form.reset();
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }
+                } else {
+                    // SUCESSO FALSO (A API respondeu, mas com um erro interno)
+                    // Exemplo: a planilha não tem as colunas certas.
+                    alert('Erro de comunicação com a base de dados. Verifique se a planilha está configurada corretamente. Detalhes: ' + JSON.stringify(response.data));
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }
+            })
+            .catch(error => {
+                // ERRO DE REDE (A API nem respondeu)
+                let errorMessage = 'Ocorreu um erro de rede ao enviar sua inscrição.';
+                if (error.response) {
+                    // O servidor respondeu com um status de erro (4xx, 5xx)
+                    errorMessage += ' Detalhes: ' + JSON.stringify(error.response.data);
+                }
+                alert(errorMessage);
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            });
         });
-    });
-</script>
+    </script>
 
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale Conosco pelo WhatsApp">
