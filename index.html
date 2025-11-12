@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longevidade Ativa - Transforme Seu Corpo Após os 40</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #764ba2;
+        }
+
+        .header-cta {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, #f8f9ff 0%, #ffffff 100%);
+            color: #333;
+            padding: 100px 20px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 50%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: #1a1a1a;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: 1.4em;
+            margin-bottom: 35px;
+            font-weight: 400;
+            color: #555;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.15em;
+            margin-bottom: 45px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #666;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* Pain Points */
+        .pain-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 50px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .pain-box h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .pain-box p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .science-highlight {
+            background: #fff;
+            padding: 30px;
+            border-left: 5px solid #667eea;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        /* Pricing Table */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .pricing-card.featured h3,
+        .pricing-card.featured .price,
+        .pricing-card.featured li {
+            color: white;
+        }
+
+        .pricing-card.featured .badge {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .pricing-card.disabled {
+            opacity: 0.6;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .pricing-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .pricing-card .subtitle {
+            font-size: 1em;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .price-period {
+            font-size: 0.5em;
+            opacity: 0.7;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: #555;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: #ffd700;
+        }
+
+        /* CTA Buttons */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.6);
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .cta-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.6);
+        }
+
+        .cta-disabled {
+            background: #999;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .cta-disabled:hover {
+            transform: none;
+        }
+
+        /* Guarantee */
+        .guarantee-box {
+            background: linear-gradient(135deg, #fff5e1 0%, #ffe5b4 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .guarantee-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-box h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f5f7fa;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .final-cta p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero h2 {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .waitlist-note {
+            background: #ff9800;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+
+
+/*meu*/
+
+
+
+
+
+
+/* Checkout Section */
+.checkout-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 100px 20px;
+}
+
+.checkout-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.checkout-title {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.checkout-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group select {
+    cursor: pointer;
+    background: white;
+}
+
+.form-required {
+    color: #e74c3c;
+}
+
+.checkout-benefits {
+    background: #f8f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.checkout-benefits h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.checkout-benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.checkout-benefits li {
+    padding: 8px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.checkout-benefits li::before {
+    content: '✓';
+    color: #4caf50;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(76, 175, 80, 0.6);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.security-note {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.security-note svg {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* Remove a class .disabled do card e adiciona isso ao CSS */
+.pricing-card .cta-secondary {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+
+
+
+
+.price-container {
+    margin-bottom: 10px;
+}
+
+.price-old {
+    font-size: 1.5em;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.pricing-card.featured .price-old {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.price {
+    font-size: 3em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.pricing-card.featured .price {
+    color: white;
+}
+
+
+
+/*Meu*/
+
+
+
+/* Correção para alinhar o conteúdo inferior das cards */
+.pricing-card {
+    /* Adiciona flexbox ao card para empurrar o CTA para o final */
+    display: flex; 
+    flex-direction: column;
+    /* Adiciona padding-bottom para que o conteúdo não fique muito colado no botão */
+    padding-bottom: 30px; 
+}
+
+/* Garante que a lista de recursos ocupe o espaço restante */
+.pricing-features {
+    flex-grow: 1; /* Ocupa todo o espaço vertical disponível */
+    margin-bottom: 25px; /* Adiciona margem antes dos botões/notas */
+}
+
+/* Container para alinhar botões e notas no final do card */
+.cta-container-bottom {
+    margin-top: auto; /* Empurra o container para o final do flexbox */
+}
+
+/* Corrige o botão do plano Ouro para não ter a largura 100% da nota */
+.pricing-card.disabled .cta-button {
+    margin-top: 15px; /* Separa do waitlist-note */
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                LONGEVIDADE <span>ATIVA</span>
+            </div>
+            <a href="#planos" class="header-cta">Ver Planos</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Recupere Seu <span class="highlight">Metabolismo</span> e Transforme Seu Corpo Após os 40</h1>
+            <h2>Treinos Online Personalizados para Resultados Rápidos e Duradouros.</h2>
+            <p>Descubra o Treino Personalizado que Respeita seu Ritmo e Maximiza Queima de Gordura e Força. — tudo no conforto da sua casa.</p>
+            <a href="#planos" class="cta-button cta-primary">Quero Começar Agora</a>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1.8K</span>
+                    <span class="stat-label">Videos de Exercícios</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Personalizado para Você</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+ 1K</span>
+                    <span class="stat-label">Treinos Gerados</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Validation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Agora não tem mais Desculpas, não Perca mais Tempo.</h2>
+            <div class="pain-box">
+                <h3>Você Está Fazendo Tudo Certo... Mas Nada Funciona?</h3>
+                <p>Depois dos 40, o corpo feminino passa por mudanças profundas que tornam o emagrecimento mais difícil:</p>
+                <ul style="font-size: 1.1em; line-height: 2; margin-left: 30px;">
+                    <li><strong>Queda hormonal</strong> - Estrogênio e progesterona diminuem, afetando o metabolismo</li>
+                    <li><strong>Sarcopenia</strong> - Perda natural de massa muscular (até 8% por década)</li>
+                    <li><strong>Resistência à insulina</strong> - O corpo armazena gordura mais facilmente</li>
+                    <li><strong>Metabolismo mais lento</strong> - Você queima menos calorias em repouso</li>
+                </ul>
+                <div class="science-highlight">
+                    <p><strong>A Boa Notícia:</strong> O treino certo pode reverter esses efeitos. Estudos comprovam que o treinamento de força combinado com HIIT é a forma mais eficaz de reativar o metabolismo após os 40, aumentar massa muscular e acelerar a queima de gordura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Histórias Reais de Transformação</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                     <p>"aceitem o desafio, pode parecer difícil, mas cada dia vale a pena, é uma superação pessoal onde o objetivo é ser melhor que você mesma                                                                                                                                                                                                                                                                                                                                                                                             "</p>
+                    <div class="testimonial-author">— Giovanna, N/informado anos</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>" No começo, parecia impossível pra mim. Eu sentia minhas pernas tremerem e achava que nunca iria evoluir. Mas com persistência, disciplina e confiança em mim mesma, fui percebendo que cada repetição me deixava mais forte, não só fisicamente, mas também mentalmente. Hoje, o treino representa mais do que exercícios: é prova de que eu posso superar meus limites e conquistar aquilo que antes parecia inalcançável. Quero que outras mulheres saibam que, quando a gente acredita e se dedica, a transformação acontece. ♥️"</p>
+                    <div class="testimonial-author">— Mirian, N/informado anos</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>" Eu ainda não estou acreditando que consegui realizar! Com 57 anos nunca tinha feito agachamentos. Muita superação, e pretendo continuar treinando. Gratidão a Deus, muito Feliz e Satisfeita. Muitíssimo obrigada 🙏                                                                                                                                                                                                                                                                                                                "</p>
+                    <div class="testimonial-author">— Rosineia, 57 anos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Por Que Escolher a Longevidade Ativa?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Treinos em Casa</h3>
+                    <p>Sem precisar de academia. Equipamentos mínimos ou nenhum. Você treina onde e quando quiser.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h3>Método Científico</h3>
+                    <p>Baseado em estudos sobre metabolismo feminino 40+. Não é achismo, é ciência aplicada.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>Foco em Força</h3>
+                    <p>Construa massa muscular para acelerar seu metabolismo e queimar gordura 24h por dia.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>HIIT Adaptado</h3>
+                    <p>Treinos intervalados de alta intensidade ajustados para o seu nível e idade.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Resultados Reais</h3>
+                    <p>Emagrecimento consistente, mais energia e força funcional para o dia a dia.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Segurança Total</h3>
+                    <p>Exercícios seguros para articulações e adaptados às mudanças do corpo 40+.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="planos">
+        <div class="container">
+            <h2 class="section-title">Escolha Seu Plano de Transformação</h2>
+            <div class="pricing-container">
+ <!-- Plan 1: Plano Bronze -->
+<div class="pricing-card featured">
+    <div class="badge">PROMOÇÃO</div>
+    <h3>Plano Bronze</h3>
+    <p class="subtitle">O Ponto de Partida Ideal</p>
+    <div class="price-container">
+        <div class="price-old">R$ 79,90</div>
+        <div class="price">R$ 64<span class="price-period">,90</span></div>
+    </div>
+    <ul class="pricing-features">
+        <li>Acesso a 3 fichas de Treinos Personalizados</li>
+        <li>Vídeos Demonstrativos de Cada Exercício das Fichas</li>
+        <li>Grupo de WhatsApp Para Dúvidas Frequentes (30 Dias)</li>
+        <li>Avaliação Inicial de Nível e Objetivos</li>
+        <li>Acesso à plataforma (30 Dias)</li>
+    </ul>
+
+  <div class="cta-container-bottom">
+    <a href="#contato" class="cta-button cta-primary">QUERO COMEÇAR</a>
+    <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+
+    </div>
+
+</div>
+</div>
+
+                <!-- Plan 2: Plano Prata -->
+                <div class="pricing-card">
+                    <h3>Plano Prata</h3>
+                    <p class="subtitle">Resultados Mais Rápidos</p>
+                    <div class="price">R$ 149<span class="price-period">,90</span></div>
+                    <ul class="pricing-features">
+                        <li>Acesso a 5 fichas de Treinos Personalizados</li>
+                        <li>Vídeos EXPLICATIVO de Cada Exercício das Fichas</li>
+                        <li>Acompanhamento Grupo VIP WhatsApp(30 Dias)</li>
+                        <li>Avaliação Inicial de Nível e Objetivos</li>
+                        <li>Acesso VITALÍCIO a Plataforma de Treinos</li>
+                        <li>Guia de Nutiçao em PDF</li>
+                        <li>Direito a uma troca/atualizaçao em 1 das fichas</li>
+                    </ul>
+
+                    <div class="cta-container-bottom">
+                         <a href="#contato" class="cta-button cta-secondary">QUERO COMEÇAR</a>
+                    </div>
+
+                </div>
+
+                <!-- Plan 3: Plano Ouro -->
+                <div class="pricing-card disabled">
+                    <h3>Elite Longevidade</h3>
+                    <p class="subtitle">Plano Ouro</p>
+                    <div class="price">R$ 249<span class="price-period">,90</span></div>
+                    <ul class="pricing-features">
+                        <li>Treinos 100% Individualizados (Ajustes Diários)</li>
+                        <li>Acompanhamento Direto e Diário com Personal Trainer</li>
+                        <li>Avaliação Mensal Completa (Análise de Rotina)</li>
+                        <li>Consultoria de Equilíbrio Hormonal</li>
+                        <li>Suporte Nutricional Avançado (Parceria com Nutricionista)</li>
+                        <li>Sessões de Coaching Motivacional</li>
+                        <li>Prioridade Máxima no Atendimento</li>
+                    </ul>
+
+<div class="cta-container-bottom">
+        <div class="waitlist-note">👑 PLANO EXCLUSIVO - APENAS 5 VAGAS/MÊS</div>
+        <a href="#contato" class="cta-button cta-secondary">QUERO SABER MAIS</a>
+    </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="section">
+        <div class="container">
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <h3>Garantia de Satisfação Total</h3>
+                <p style="font-size: 1.1em; margin-top: 20px;">Experimente o programa Fundação Ativa por 15 dias. Se não estiver satisfeita com os treinos ou não sentir que este é o caminho certo para você, devolvemos 100% do seu investimento. Sem perguntas, sem complicação.</p>
+                <p style="font-weight: bold; margin-top: 20px; color: #667eea;">Você não tem nada a perder. Apenas resultados a ganhar.</p>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Checkout Section -->
+<section id="checkout" class="checkout-section">
+    <div class="container">
+        <div class="checkout-container">
+            <h2 class="checkout-title">🎉 Você Está a Um Passo da Transformação!</h2>
+            <p class="checkout-subtitle">Preencha seus dados para garantir sua vaga e receber o acesso imediato</p>
+
+
+            <form id="checkoutForm" action="https://formspree.io/f/SEU_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome Completo <span class="form-required">*</span></label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="form-required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">WhatsApp <span class="form-required">*</span></label>
+                    <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="plano">Plano Escolhido <span class="form-required">*</span></label>
+                    <select id="plano" name="plano" required>
+                        <option value="">Selecione seu plano</option>
+                        <option value="Bronze - R$ 64,90/mês">Plano Bronze - R$ 64,90/mês</option>
+                        <option value="Prata - R$ 497/mês">Caminho Otimizado - R$ 497/mês</option>
+                        <option value="Elite - R$ 249,90/mês">Elite Longevidade - R$ 249,90/mês</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="idade">Idade (opcional)</label>
+                    <input type="number" id="idade" name="idade" placeholder="Sua idade" min="18" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="objetivo">Principal Objetivo (opcional)</label>
+                    <select id="objetivo" name="objetivo">
+                        <option value="">Selecione...</option>
+                        <option value="Emagrecer">Emagrecer</option>
+                        <option value="Ganhar Massa Muscular">Ganhar Massa Muscular</option>
+                        <option value="Mais Energia">Ter Mais Energia</option>
+                        <option value="Saúde Geral">Melhorar Saúde Geral</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">FINALIZAR INSCRIÇÃO</button>
+
+                <div class="security-note">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Seus dados estão seguros e protegidos
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Preciso de equipamentos?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não! Os treinos da Fundação Ativa podem ser feitos apenas com o peso corporal. Se você tiver halteres ou elásticos, ótimo — vamos usá-los. Mas não é obrigatório. Nos planos mais avançados, recomendamos alguns equipamentos básicos para otimizar resultados.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Tenho pouco tempo. Os treinos são longos?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Os treinos são projetados para caber na sua rotina. Sessões de 30 a 45 minutos, 3 a 4 vezes por semana. O método HIIT foi escolhido justamente por ser eficiente: menos tempo, máximo resultado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Não sou tecnológica. Vou conseguir acompanhar?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Com certeza! Nossa plataforma é super simples. Você recebe vídeos claros com demonstrações de cada exercício e instruções passo a passo. Se tiver qualquer dúvida, nossa equipe está pronta para te ajudar por email ou WhatsApp (dependendo do plano).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Nunca treinei força. É seguro para mim?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Nossos treinos são especialmente adaptados para mulheres 40+ que estão começando ou retomando a atividade física. Começamos no seu ritmo e evoluímos progressivamente. Todos os exercícios respeitam as articulações e têm variações de intensidade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quanto tempo até ver resultados?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A maioria das nossas alunas relata mais energia e disposição em 2 semanas. Mudanças visíveis no corpo começam a aparecer entre 4 a 8 semanas, com treino consistente. Lembre-se: estamos construindo algo sustentável, não uma solução mágica.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>O plano inclui orientação nutricional?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O plano Fundação Ativa inclui um Guia Completo de Nutrição para Ativação Metabólica, com princípios baseados em ciência. Nos planos superiores, você recebe sugestões de planos alimentares e, no Elite, acompanhamento com nutricionista parceira.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Está Pronta Para Transformar Seu Corpo e Sua Vida?</h2>
+            <p>Junte-se a centenas de mulheres que já recuperaram sua energia, força e confiança com a Longevidade Ativa. O seu corpo merece o treino certo.</p>
+            <a href="#planos" class="cta-button cta-primary">COMEÇAR MINHA TRANSFORMAÇÃO</a>
+
+
+
+
+
+
+<script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        });
+    });
+
+    // Formulário de Checkout - Redireciona após envio
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+        // O formulário será enviado para o Formspree
+        // Após 1 segundo, redireciona para a página de pagamento
+        
+        setTimeout(function() {
+            // SUBSTITUA AQUI pelo link da sua página de pagamento
+            // window.location.href = 'https://pay.hotmart.com/SEU-LINK-DE-PAGAMENTO';
+            
+            // Por enquanto, vou deixar um alert
+            alert('Obrigado! Você será redirecionado para a página de pagamento.');
+        }, 1000);
+    });
+
+    // Máscara para telefone
+    document.getElementById('telefone').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length <= 11) {
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+        }
+        e.target.value = value;
+    });
+</script>
+</body>
