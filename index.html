@@ -1456,6 +1456,18 @@ html {
 
 
 
+<!-- Adiciona a biblioteca axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Sua tag script existente vem DEPOIS -->
+<script>
+    // seu código de FAQ, máscara de telefone, e formulário...
+</script>
+
+
+
+
+
 
 
 <script>
@@ -1483,74 +1495,64 @@ html {
         e.target.value = value;
     });
 
-    // NOVO CÓDIGO PARA ENVIAR O FORMULÁRIO PARA A PLANILHA GOOGLE
-    const form = document.getElementById('checkoutForm');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Impede o envio padrão do formulário
 
-        const submitButton = form.querySelector('.submit-button');
-        const originalButtonText = submitButton.innerHTML;
-        submitButton.disabled = true;
-        submitButton.innerHTML = 'ENVIANDO...';
+    
 
+// NOVO CÓDIGO COM AXIOS
+const form = document.getElementById('checkoutForm');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        
-     // --- INÍCIO DO CÓDIGO DE TESTE ---
-fetch('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        data: [
-            {
-                'nome': 'Teste',
-                'email': 'teste@email.com',
-                'telefone': '123456',
-                'plano': 'Plano Teste',
-                'idade': '99',
-                'objetivo': 'Testar'
-            }
-        ]
+    const submitButton = form.querySelector('.submit-button');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'ENVIANDO...';
+
+    // Usando AXIOS em vez de FETCH
+    axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
+        data: {
+            'nome': form.elements['nome'].value,
+            'email': form.elements['email'].value,
+            'telefone': form.elements['telefone'].value,
+            'plano': form.elements['plano'].value,
+            'idade': form.elements['idade'].value,
+            'objetivo': form.elements['objetivo'].value
+        }
     } )
-})
-// --- FIM DO CÓDIGO DE TESTE ---
-
-
-.then((response) => {
-    if (response.ok) {
+    .then(response => {
         // SUCESSO!
+        console.log(response); // Para depuração
         alert('Inscrição realizada com sucesso! Você será redirecionado para a página de pagamento.');
 
-        // --- INÍCIO DA NOVA LÓGICA DE REDIRECIONAMENTO ---
-
-        // 1. Crie um mapa com seus links de pagamento
+        // Lógica de redirecionamento (mantida)
         const linksDePagamento = {
-            "Plano Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN",
-            "Plano Prata - R$ 97/mês": "https://mpago.la/2Ew2DGC"
-            // Adicione mais planos aqui se precisar no futuro
+            "Bronze - R$ 64,90/mês": "SEU_LINK_BRONZE",
+            "Caminho Otimizado - R$ 497/mês": "SEU_LINK_PRATA"
         };
-
-        // 2. Pegue o valor do plano que o usuário selecionou no formulário
         const planoSelecionado = form.elements['plano'].value;
-
-        // 3. Encontre o link correspondente no mapa
         const linkParaRedirecionar = linksDePagamento[planoSelecionado];
 
-        // 4. Verifique se o link foi encontrado e redirecione o usuário
-        if (linkParaRedirecionar) {
+        if (linkParaRedirecionar && linkParaRedirecionar !== "SEU_LINK_BRONZE") { // Adicionei uma verificação extra
             window.location.href = linkParaRedirecionar;
         } else {
-            // Se, por algum motivo, o plano não tiver um link correspondente, avise o usuário.
-            alert('Obrigado pela inscrição! Em breve entraremos em contato com o link para pagamento.');
-            // E limpe o formulário mesmo assim
+            alert('Obrigado pela inscrição! Em breve entraremos em contato.');
             form.reset();
             submitButton.disabled = false;
             submitButton.innerHTML = originalButtonText;
         }
-        
-        // --- FIM DA NOVA LÓGICA ---
+    })
+    .catch(error => {
+        // ERRO!
+        console.error(error); // Isso nos dará mais detalhes do erro no console do navegador
+        alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    });
+});
+
+
+
+
 
     } else {
         // ERRO!
