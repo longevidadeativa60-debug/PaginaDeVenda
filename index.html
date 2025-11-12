@@ -106,7 +106,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(to bottom, #f8f9ff 0%, #ffffff 100%);
+            background: linear-gradient(to bottom, #e1ffee 0%, #dfd4ff 50%, #e0fffd 100%);
             color: #333;
             padding: 100px 20px 120px;
             text-align: center;
@@ -1318,7 +1318,7 @@ html {
             <p class="checkout-subtitle">Preencha seus dados para garantir sua vaga e receber o acesso imediato</p>
 
 
-            <form id="checkoutForm" action="https://formspree.io/f/SEU_FORM_ID" method="POST">
+            <form id="checkoutForm" >
                 <div class="form-group">
                     <label for="nome">Nome Completo <span class="form-required">*</span></label>
                     <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
@@ -1458,39 +1458,21 @@ html {
 
 
 <script>
-    // FAQ Toggle
+    // FAQ Toggle (seu código original, mantido )
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.parentElement;
             const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQs
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
             });
-            
-            // Open clicked FAQ if it wasn't active
             if (!isActive) {
                 faqItem.classList.add('active');
             }
         });
     });
 
-    // Formulário de Checkout - Redireciona após envio
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-        // O formulário será enviado para o Formspree
-        // Após 1 segundo, redireciona para a página de pagamento
-        
-        setTimeout(function() {
-            // SUBSTITUA AQUI pelo link da sua página de pagamento
-            // window.location.href = 'https://pay.hotmart.com/SEU-LINK-DE-PAGAMENTO';
-            
-            // Por enquanto, vou deixar um alert
-            alert('Obrigado! Você será redirecionado para a página de pagamento.');
-        }, 1000);
-    });
-
-    // Máscara para telefone
+    // Máscara para telefone (seu código original, mantido)
     document.getElementById('telefone').addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length <= 11) {
@@ -1499,7 +1481,65 @@ html {
         }
         e.target.value = value;
     });
+
+    // NOVO CÓDIGO PARA ENVIAR O FORMULÁRIO PARA A PLANILHA GOOGLE
+    const form = document.getElementById('checkoutForm');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o envio padrão do formulário
+
+        const submitButton = form.querySelector('.submit-button');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'ENVIANDO...';
+
+        fetch('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                data: [
+                    {
+                        'nome': form.elements['nome'].value,
+                        'email': form.elements['email'].value,
+                        'telefone': form.elements['telefone'].value,
+                        'plano': form.elements['plano'].value,
+                        'idade': form.elements['idade'].value,
+                        'objetivo': form.elements['objetivo'].value
+                    }
+                ]
+            })
+        })
+        .then((response) => {
+            if (response.ok) {
+                // SUCESSO!
+                alert('Inscrição realizada com sucesso! Você será redirecionada para a página de pagamento.');
+                
+                // Redireciona para a página de pagamento
+                // window.location.href = 'https://SEU-LINK-DE-PAGAMENTO.COM';
+                
+                // Limpa o formulário e restaura o botão
+                form.reset( );
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            } else {
+                // ERRO!
+                alert('Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.');
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
+        })
+        .catch((error) => {
+            // ERRO DE CONEXÃO!
+            console.error('Erro:', error);
+            alert('Ocorreu um erro de conexão. Verifique sua internet e tente novamente.');
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        });
+    });
 </script>
+
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale Conosco pelo WhatsApp">
         <i class="fab fa-whatsapp"></i>
