@@ -1480,7 +1480,7 @@ html {
             e.target.value = value;
         });
 
-        // --- CÓDIGO DO FORMULÁRIO COM DIAGNÓSTICO ---
+        // --- CÓDIGO DO FORMULÁRIO COM A CORREÇÃO FINAL ---
         const form = document.getElementById('checkoutForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1500,21 +1500,20 @@ html {
                 'objetivo': form.elements['objetivo'].value
             };
 
-            // 2. Enviar para o SheetDB com o formato de dados CORRETO
-            axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
-                // A linha "data:" deve conter um ARRAY (envolvido em colchetes [] )
-                data: [formData] 
-            })
+            // 2. Enviar para o SheetDB com o formato de dados MAIS DIRETO
+            //    Removemos o encapsulamento { data: ... } e enviamos o objeto diretamente.
+            axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', formData )
             .then(response => {
                 // 3. VERIFICAÇÃO DE SUCESSO REAL
-                if (response.data && response.data.created === 1) {
+                // O SheetDB pode retornar { "created": 1 } ou um array com os dados inseridos.
+                if (response.data && (response.data.created >= 1 || Array.isArray(response.data))) {
                     // SUCESSO REAL!
                     alert('Inscrição realizada com sucesso! Você será redirecionado para o pagamento.');
 
                     // Lógica de redirecionamento
                     const linksDePagamento = {
-                        "Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN", // Link do Bronze
-                        "Caminho Otimizado - R$ 97/mês": "https://mpago.la/2Ew2DGC"
+                        "Plano Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN", // Link do Bronze
+                        "Plano Prata - R$ 97/mês": "https://mpago.la/2Ew2DGC"
                     };
                     const planoSelecionado = formData.plano;
                     const linkParaRedirecionar = linksDePagamento[planoSelecionado];
