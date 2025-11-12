@@ -1456,7 +1456,7 @@ html {
 
 
 
-  <!-- Adiciona a biblioteca axios -->
+    <!-- Adiciona a biblioteca axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- SEU SCRIPT COMPLETO E CORRIGIDO -->
@@ -1500,21 +1500,21 @@ html {
                 'objetivo': form.elements['objetivo'].value
             };
 
-            // 2. Enviar para o SheetDB
+            // 2. Enviar para o SheetDB com o formato de dados CORRETO
             axios.post('https://sheetdb.io/api/v1/q8f14kdcyomvo', {
-                data: formData // Estrutura simplificada para evitar erros
-            } )
+                // A linha "data:" deve conter um ARRAY (envolvido em colchetes [] )
+                data: [formData] 
+            })
             .then(response => {
                 // 3. VERIFICAÇÃO DE SUCESSO REAL
-                // O SheetDB retorna { "created": 1 } em caso de sucesso. Vamos checar isso.
                 if (response.data && response.data.created === 1) {
                     // SUCESSO REAL!
                     alert('Inscrição realizada com sucesso! Você será redirecionado para o pagamento.');
 
                     // Lógica de redirecionamento
                     const linksDePagamento = {
-                        "Bronze - R$ 64,90/mês": "https://mpago.la/2VVyZkN", // SEU LINK CURTO AQUI
-                        "Caminho Otimizado - R$ 497/mês": "COLE_O_LINK_CURTO_DO_PLANO_PRATA_AQUI"
+                        "Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN", // Link do Bronze
+                        "Caminho Otimizado - R$ 97/mês": "https://mpago.la/2Ew2DGC"
                     };
                     const planoSelecionado = formData.plano;
                     const linkParaRedirecionar = linksDePagamento[planoSelecionado];
@@ -1528,18 +1528,16 @@ html {
                         submitButton.innerHTML = originalButtonText;
                     }
                 } else {
-                    // SUCESSO FALSO (A API respondeu, mas com um erro interno)
-                    // Exemplo: a planilha não tem as colunas certas.
-                    alert('Erro de comunicação com a base de dados. Verifique se a planilha está configurada corretamente. Detalhes: ' + JSON.stringify(response.data));
+                    // SUCESSO FALSO
+                    alert('Erro de comunicação com a base de dados. Detalhes: ' + JSON.stringify(response.data));
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonText;
                 }
             })
             .catch(error => {
-                // ERRO DE REDE (A API nem respondeu)
+                // ERRO DE REDE
                 let errorMessage = 'Ocorreu um erro de rede ao enviar sua inscrição.';
                 if (error.response) {
-                    // O servidor respondeu com um status de erro (4xx, 5xx)
                     errorMessage += ' Detalhes: ' + JSON.stringify(error.response.data);
                 }
                 alert(errorMessage);
@@ -1548,6 +1546,7 @@ html {
             });
         });
     </script>
+
 
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale Conosco pelo WhatsApp">
