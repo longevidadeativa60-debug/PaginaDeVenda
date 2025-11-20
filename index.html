@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Longevidade Ativa | Treinos Online para Mulheres 40+</title>
+   
+   <script>
+
+    !function(f,b,e,v,n,t,s)
+
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+    n.queue=[];t=b.createElement(e);t.async=!0;
+
+    t.src=v;s=b.getElementsByTagName(e)[0];
+
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '2057947164633959'); // <-- TROQUE AQUI PELO SEU PIXEL ID
+
+    fbq('track', 'PageView');
+
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+
+    /></noscript>
+   
+   
     <meta name="description" content="Recupere o metabolismo e a vitalidade com planos de treino Bronze, Prata e Elite. Resultados duradouros após os 40.">
     
     <meta property="og:title" content="Longevidade Ativa | Planos de Treino Online 40+">
@@ -1072,6 +1104,12 @@ html {
                 padding: 20px; /* Reduz o padding */
             }
         }
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -1264,7 +1302,7 @@ html {
                         <li>Acompanhamento Grupo VIP WhatsApp(30 Dias)</li>
                         <li>Avaliação Inicial de Nível e Objetivos</li>
                         <li>Acesso VITALÍCIO a Plataforma de Treinos</li>
-                        <li>Guia de Nutiçao em PDF</li>
+                        <li>Guia de Nutriçao em PDF</li>
                         <li>Direito a 5 trocas de exercícios nas fichas(30 Dias)</li>
                     </ul>
 
@@ -1285,7 +1323,7 @@ html {
                         <li>Acompanhamento Grupo VIP WhatsApp(30 Dias)</li>
                         <li>Avaliação Inicial de Nível e Objetivos</li>
                         <li>Acesso VITALÍCIO a Plataforma de Treinos</li>
-                        <li>Guia de Nutiçao em PDF</li>
+                        <li>Guia de Nutriçao em PDF</li>
                         <li>Direito a 5 trocas de exercícios nas fichas(30 Dias)</li>
                         <li>Ebook EXCLUSIVO de Receitas Fit</li>
                         <li>Prioridade Máxima no Atendimento</li>
@@ -1295,9 +1333,13 @@ html {
                     </ul>
 
 <div class="cta-container-bottom">
-        <div class="waitlist-note">👑 PLANO EXCLUSIVO - APENAS 5 VAGAS/MÊS</div>
-        <a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="cta-button cta-secondary">QUERO SABER MAIS</a>
-    </div>
+    <div class="waitlist-note">👑 PLANO EXCLUSIVO - APENAS 5 VAGAS/MÊS</div>
+    
+    <a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" 
+       class="cta-button cta-secondary"
+       onclick="fbq('track', 'Contact');"> QUERO SABER MAIS
+    </a>
+</div>
 
             </div>
         </div>
@@ -1456,26 +1498,46 @@ html {
             .then(response => {
                 // 3. VERIFICAÇÃO DE SUCESSO REAL
                 // O SheetDB pode retornar { "created": 1 } ou um array com os dados inseridos.
-                if (response.data && (response.data.created >= 1 || Array.isArray(response.data))) {
-                    // SUCESSO REAL!
-                    alert('Inscrição realizada com sucesso! Você será redirecionado para o pagamento.');
+if (response.data && (response.data.created >= 1 || Array.isArray(response.data))) {
+                // SUCESSO REAL!
 
-                    // Lógica de redirecionamento
-                    const linksDePagamento = {
-                        "Plano Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN", // Link do Bronze
-                        "Plano Prata - R$ 97/mês": "https://mpago.la/2Ew2DGC"
-                    };
-                    const planoSelecionado = formData.plano;
-                    const linkParaRedirecionar = linksDePagamento[planoSelecionado];
+                // 1. DEFINIR VALORES
+                const linksDePagamento = {
+                    "Plano Bronze - R$ 49,90/mês": "https://mpago.la/2VVyZkN", 
+                    "Plano Prata - R$ 97/mês": "https://mpago.la/2Ew2DGC"
+                };
+                const planoSelecionado = formData.plano;
+                const linkParaRedirecionar = linksDePagamento[planoSelecionado];
 
-                    if (linkParaRedirecionar && linkParaRedirecionar.startsWith("http" )) {
-                        window.location.href = linkParaRedirecionar;
-                    } else {
-                        alert('Obrigado pela inscrição! Em breve entraremos em contato.');
-                        form.reset();
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonText;
-                    }
+                let valorCompra = 0;
+                if (planoSelecionado.includes("Bronze")) {
+                    valorCompra = 49.90;
+                } else if (planoSelecionado.includes("Prata")) {
+                    valorCompra = 97.00;
+                }
+
+                // 2. DISPARAR EVENTO DE COMPRA (PURCHASE) PARA O PIXEL DA META
+                if (typeof fbq === 'function' && valorCompra > 0) {
+                    fbq('track', 'Purchase', {
+                        value: valorCompra,
+                        currency: 'BRL'
+                    });
+                }
+                
+                alert('Inscrição realizada com sucesso! Você será redirecionado para o pagamento.');
+
+                // Lógica de redirecionamento
+                if (linkParaRedirecionar && linkParaRedirecionar.startsWith("http")) {
+                    window.location.href = linkParaRedirecionar;
+                } else {
+                    alert('Obrigado pela inscrição! Em breve entraremos em contato.');
+                    form.reset();
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }
+            }
+
+
                 } else {
                     // SUCESSO FALSO
                     alert('Erro de comunicação com a base de dados. Detalhes: ' + JSON.stringify(response.data));
@@ -1498,8 +1560,11 @@ html {
 
 
     <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="whatsapp-float" target="_blank" title="Fale Conosco pelo WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" 
+   class="whatsapp-float" 
+   target="_blank" 
+   title="Fale Conosco pelo WhatsApp"
+   onclick="fbq('track', 'Contact');"> <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
